@@ -1,20 +1,24 @@
 import requests, os
 
-os.getcwd()
+print(os.getcwd())
 
-accelFile = requests.get('http://www.textfiles.com/computers/accel.txt')
+url = 'http://www.textfiles.com/computers/accel.txt'  # update url accordingly
+fileName = 'test'  # name the file to be written without the extension
 
-if accelFile.status_code == 200:
+downloadFile = requests.get(url)
+writtenFile = '%s.txt' % fileName
+
+if downloadFile.status_code == 200:
     print('File downloaded to the variable successfully')
 else:
     print('File download error. Try again')
 
 print('')
-with open('./Accel.txt', 'wb') as f:
-    for x in accelFile.iter_content(1000):
+with open(writtenFile, 'wb') as f:
+    for x in downloadFile.iter_content(1000):
         f.write(x)
 
-with open('./Accel.txt', 'r') as f:
-    blub = f.read()
+with open(writtenFile, 'r') as f:
+    tempStorage = f.read()
 
-print(blub)
+print(tempStorage)
