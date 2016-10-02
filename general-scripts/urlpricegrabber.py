@@ -1,6 +1,6 @@
 '''
 URL PriceGrabber
-if you consistently need to check the price on something - with just the url and the css selector for the
+if you consistently need to check the price on something - with just a url and the css selector for the
 price of the product at that url, you can easily download and extract the prices a list of products.
 Very useful, for example, if you have to check the price on a bunch of different items every day to see if the
 price changed.
