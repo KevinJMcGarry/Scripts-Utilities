@@ -14,7 +14,8 @@ if [ -z "$1" ]
 fi
 
 git checkout master
-git pull
+git pull origin master
+git pull fetch origin master
 # git merge origin/dev
 git tag ${1}
 
