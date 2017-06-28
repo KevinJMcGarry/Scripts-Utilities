@@ -11,7 +11,7 @@ for i in range(1, count + 1):
     if userGuess == secretNumber:
         if i == 1:
             print('Congratulations! You guessed the correct number of '
-                  '{} using 1 guess!'.format(secretNumber))
+                  '{} on your first guess!!'.format(secretNumber))
         else:
             print('Congratulations! You guessed the correct number of '
                   '{} using {} guesses!'.format(secretNumber, i))
