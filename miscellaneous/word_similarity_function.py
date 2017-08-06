@@ -1,3 +1,9 @@
+'''
+Python 3
+Script that prompts user for a word and outputs a dictionary definition for that word. If the word doesn't exits
+in the dictionary, it offers up a close match recommendation.
+'''
+
 import os, json, difflib
 
 os.chdir('../word_dictionary')  # outside the function as the location is relative to the user running the function
