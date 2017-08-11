@@ -25,5 +25,4 @@ def word_dictionary(user_word):
         return '{} is not in the dictionary. Please check your spelling and try again'.format(user_word)
 
 user_word = input('Please enter a word to get its definition: ').lower()
-# print(user_word + ': ' + str(word_dictionary(user_word)))
 print(word_dictionary(user_word))
