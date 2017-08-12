@@ -15,12 +15,16 @@ def word_dictionary(user_word):
         return '{}: {}'.format(user_word, data[user_word])
     elif len(difflib.get_close_matches(user_word, data.keys())) > 0:  # checking to see if there are any similar words:
         answer = input('did you by chance mean the word {}? Enter \'y\' for yes or \'n\' for no '.format(difflib.get_close_matches(user_word, data.keys())[0])).lower()
-        if answer == 'y':
-            return '{}: {}'.format(difflib.get_close_matches(user_word, data.keys())[0], data[difflib.get_close_matches(user_word, data.keys())[0]])
-            # by default the above method returns 3 matches in descending order by similarity
-            # the sub[0] function uses the first one.
-        else:  # if user presses 'n'
-            return 'ok, {} is not in the dictionary. Exiting the program.'.format(user_word)
+        while True:
+            if answer == 'y':
+                return '{}: {}'.format(difflib.get_close_matches(user_word, data.keys())[0], data[difflib.get_close_matches(user_word, data.keys())[0]])
+                # by default the above method returns 3 matches in descending order by similarity
+                # the sub[0] function uses the first one.
+            elif answer == 'n':  # if user presses 'n'
+                return 'ok, {} is not in the dictionary. Exiting the program.'.format(user_word)
+            else:
+                answer = input('I didn\'t understand your response. Please enter \'y\' for yes or \'n\' for no ')
+                continue
     else:  # if there isn't a match or any similar words found
         return '{} is not in the dictionary. Please check your spelling and try again'.format(user_word)
 
