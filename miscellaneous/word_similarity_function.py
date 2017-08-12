@@ -34,7 +34,7 @@ def word_dictionary(user_word):
 user_word = input('Please enter a word to get its definition: ').lower()
 output = (word_dictionary(user_word))  # the dictionary defintion results are returned as a list of strings
 
-if type(output) == list:
+if type(output) == list:  # if the return value is a list of dictionary definitions
     for element in output:
         print(element)  # printing out each element in a list
 else:
