@@ -12,12 +12,14 @@ data = json.load(open('./data.json'))  # data structure containing an abridged d
 
 def word_dictionary(user_word):
     if user_word in data.keys():
-        return '{}: {}'.format(user_word, data[user_word])
+        print(user_word)
+        return data[user_word]
     elif len(difflib.get_close_matches(user_word, data.keys())) > 0:  # checking to see if there are any similar words:
         answer = input('did you by chance mean the word {}? Enter \'y\' for yes or \'n\' for no '.format(difflib.get_close_matches(user_word, data.keys())[0])).lower()
         while True:
             if answer == 'y':
-                return '{}: {}'.format(difflib.get_close_matches(user_word, data.keys())[0], data[difflib.get_close_matches(user_word, data.keys())[0]])
+                print(difflib.get_close_matches(user_word, data.keys())[0])
+                return data[difflib.get_close_matches(user_word, data.keys())[0]]
                 # by default the above method returns 3 matches in descending order by similarity
                 # the sub[0] function uses the first one.
             elif answer == 'n':  # if user presses 'n'
@@ -28,5 +30,12 @@ def word_dictionary(user_word):
     else:  # if there isn't a match or any similar words found
         return '{} is not in the dictionary. Please check your spelling and try again'.format(user_word)
 
+# below is the user interaction with the script
 user_word = input('Please enter a word to get its definition: ').lower()
-print(word_dictionary(user_word))
+output = (word_dictionary(user_word))  # the dictionary defintion results are returned as a list of strings
+
+if type(output) == list:
+    for element in output:
+        print(element)  # printing out each element in a list
+else:
+    print(output)
