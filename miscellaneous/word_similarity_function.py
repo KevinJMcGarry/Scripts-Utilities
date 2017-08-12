@@ -11,10 +11,10 @@ data = json.load(open('./data.json'))  # data structure containing an abridged d
 
 
 def word_dictionary(user_word):
-    if user_word in data:
+    if user_word in data.keys():
         return '{}: {}'.format(user_word, data[user_word])
     elif len(difflib.get_close_matches(user_word, data.keys())) > 0:  # checking to see if there are any similar words:
-        answer = input('did you by chance mean the word {}? Enter y for yes or n for no '.format(difflib.get_close_matches(user_word, data.keys())[0])).lower()
+        answer = input('did you by chance mean the word {}? Enter \'y\' for yes or \'n\' for no '.format(difflib.get_close_matches(user_word, data.keys())[0])).lower()
         if answer == 'y':
             return '{}: {}'.format(difflib.get_close_matches(user_word, data.keys())[0], data[difflib.get_close_matches(user_word, data.keys())[0]])
             # by default the above method returns 3 matches in descending order by similarity
