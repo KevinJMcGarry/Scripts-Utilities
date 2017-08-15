@@ -32,7 +32,7 @@ def word_dictionary(user_word):
 
 # below is the user interaction with the script
 user_word = input('Please enter a word to get its definition: ').lower()
-output = (word_dictionary(user_word))  # the dictionary defintion results are returned as a list of strings
+output = (word_dictionary(user_word))  # the dictionary definition results are returned as a list of strings
 
 if type(output) == list:  # if the return value is a list of dictionary definitions
     for element in output:
