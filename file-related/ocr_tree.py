@@ -21,9 +21,9 @@ os.chdir('../../temp7')
 print(os.getcwd())
 
 scriptDir = os.path.dirname(os.path.realpath(__file__))
-print(scriptDir + '/ocr-tree.py: Start')
+print(scriptDir + '/ocr_tree.py: Start')
 
-time.sleep(2)
+time.sleep(1)
 
 if len(sys.argv) > 1:
     startDirectory = sys.argv[1]
