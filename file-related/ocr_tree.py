@@ -1,3 +1,14 @@
+'''
+Utility that leverages the ocrmypdf library to auto-ocr all pdfs in all folders and subfolders.
+note that ocrmypdf must be installed on the local computer prior to running this script
+https://pypi.python.org/pypi/ocrmypdf
+
+mac users can run --
+brew tap jbarlow83/ocrmypdf
+brew install ocrmypdf
+
+'''
+
 #!/usr/bin/env python
 
 import logging
