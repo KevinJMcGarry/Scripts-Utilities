@@ -55,7 +55,6 @@ for directoryName, subdirectoryList, fileList in os.walk(startDirectory):
             logging.info(ocrCommand)
             proc = subprocess.Popen(ocrCommand, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             result = str(proc.stdout.read())  # needed to cast this to string as subprocess returns bytes objects
-            # print(result)
             if 'page already has text' in result:  # checking to see if file has already been ocr'd
                 result = 'Skipped document because it already contains searchable text'
                 print(result)
