@@ -41,7 +41,6 @@ for directoryName, subdirectoryList, fileList in os.walk(startDirectory):
     print(directoryName, subdirectoryList, fileList)
     logging.info('\n')
     logging.info(directoryName + '\n')
-    # os.chdir(directoryName)
     for eachFileName in fileList:
         print(eachFileName)
         fileExtension = os.path.splitext(eachFileName)[1]
