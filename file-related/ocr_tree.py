@@ -24,7 +24,7 @@ print(scriptDir + '/ocr_tree.py: Start')
 
 time.sleep(5)
 
-if len(sys.argv) > 1:  # first parameter option to specify is path of folder to 'walk'
+if len(sys.argv) > 1:  # first parameter option to specify is path of folder to 'walk'. Value assigned to startDirectory
     startDirectory = sys.argv[1]
 else:
     startDirectory = '.'
