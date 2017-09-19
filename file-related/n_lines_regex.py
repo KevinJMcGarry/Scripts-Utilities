@@ -1,3 +1,9 @@
+'''
+function to read and alter n number of lines. 
+call the function passing in the file name and the number of lines to read
+'''
+
+
 import os, re, itertools
 
 def cleanlines(filename, numoflines):
