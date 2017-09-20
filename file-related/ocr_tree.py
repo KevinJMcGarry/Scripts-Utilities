@@ -24,15 +24,15 @@ print(scriptDir + '/ocr_tree.py: Start')
 
 time.sleep(5)
 
-if len(sys.argv) > 1:  # first parameter option to specify is path of folder to 'walk'. Value assigned to startDirectory
+if len(sys.argv) > 1:  # first argument/parameter option to specify is path of folder to 'walk'. Value assigned to startDirectory
     startDirectory = sys.argv[1]
 else:
-    startDirectory = '.'
+    startDirectory = '.'  # default directory to use if one isn't specified at runtime
 
-if len(sys.argv) > 2:  # second parameter option could be path to a log file
+if len(sys.argv) > 2:  # second argument/arameter option could be path to a log file
     logFile = sys.argv[2]
 else:
-    logFile = scriptDir + '/ocr_tree.log'
+    logFile = scriptDir + '/ocr_tree.log'  # default log file to use if one isn't specified at runtime
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', filename=logFile, filemode='w')
 
