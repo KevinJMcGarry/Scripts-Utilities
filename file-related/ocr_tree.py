@@ -44,6 +44,9 @@ for directoryName, subdirectoryList, fileList in os.walk(startDirectory):
     logging.info(directoryName + '\n')
     for eachFileName in fileList:
         fileExtension = os.path.splitext(eachFileName)[1]  # make sure this is splitting on last .
+        if eachFileName[-8:] == "-ocr.pdf":  # logic to skip previously ocr'd files
+            print('The file "{}" has already been ocr\'d by ocrmypdf!!'.format(eachFileName))
+            continue
         if fileExtension == '.pdf':
             baseFileName = os.path.splitext(eachFileName)[0]
             ocrCommand = [r"ocrmypdf",  "--deskew", os.path.join(directoryName, eachFileName),
