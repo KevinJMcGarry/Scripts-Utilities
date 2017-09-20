@@ -42,13 +42,10 @@ for directoryName, subdirectoryList, fileList in os.walk(startDirectory):
     logging.info(directoryName + '\n')
     # os.chdir(directoryName)
     for eachFileName in fileList:
-        print(eachFileName)
         fileExtension = os.path.splitext(eachFileName)[1]  # make sure this is splitting on last .
         if fileExtension == '.pdf':
             baseFileName = os.path.splitext(eachFileName)[0]
-            print(baseFileName)
             fullPath = directoryName + '/' + eachFileName
-            print(fullPath)
             ocrCommand = [r"ocrmypdf",  "--deskew", os.path.join(directoryName, eachFileName),
                           os.path.join(directoryName, baseFileName + '-ocr.pdf')]  # os.path.join to traverse all subdirs
             logging.info(ocrCommand)
