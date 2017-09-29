@@ -23,5 +23,5 @@ def cleanfiles(folder, numoflines):
                         re.sub("chaka", "foobar", line)
                         outputfile.write(line)
                         counter += 1
-                        
 # todo - add in datetime for new file. logic to delete .DS files
+# todo - tar up source files and move them archived folder
