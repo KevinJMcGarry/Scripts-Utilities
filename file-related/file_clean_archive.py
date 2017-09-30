@@ -13,14 +13,16 @@ def cleanfiles(folder, numoflines):
     if not os.path.exists(os.path.join(folder, cleanedfolder)):
         os.mkdir(os.path.join(folder, cleanedfolder))  # makes a folder called 'cleanedfiles' under folder path
     for eachfile in os.listdir(folder):
+        if eachfile.endswith("DS_Store"):
+            continue  # skip mac created .DS_Store files
         if os.path.isfile(os.path.join(folder, eachfile)):  # only work on files, not folders
-            print(eachfile)
+            print('processing file - {} ...'.format(eachfile))
             with open(eachfile, 'r') as inputfile:
                 #with open(os.path.join(folder, cleanedfolder, eachfile + '.new'), 'w') as outputfile:
                 with open(os.path.join(folder, cleanedfolder, (datetime.datetime.now().strftime('%Y-%m-%d_%H.%M.%S'))
                         + ".txt"), 'w') as outputfile:
                     for line in inputfile:
-                        if counter > 5:
+                        if counter > 5:  # only working with the first 5 lines of each file
                             break
                         re.sub("chaka", "foo", line)  # adjust strings to substitute accordingly
                         outputfile.write(line)
