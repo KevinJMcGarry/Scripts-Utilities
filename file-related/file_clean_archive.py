@@ -4,7 +4,7 @@ regex substitution, writing cleaned lines to a new file in a separate folder and
 up the original files and storing them in a separate source folder with a date/timestamp for the name
 '''
 
-import os, re, tarfile
+import os, re, datetime, tarfile
 
 def cleanfiles(folder, numoflines):
     print(os.getcwd())
@@ -16,12 +16,12 @@ def cleanfiles(folder, numoflines):
         if os.path.isfile(os.path.join(folder, eachfile)):  # only work on files, not folders
             print(eachfile)
             with open(eachfile, 'r') as inputfile:
-                with open(os.path.join(folder, cleanedfolder, eachfile + '.new'), 'w') as outputfile:
+                #with open(os.path.join(folder, cleanedfolder, eachfile + '.new'), 'w') as outputfile:
+                with open(os.path.join(folder, cleanedfolder, (datetime.datetime.now().strftime('%Y-%m-%d_%H.%M.%S'))
+                        + ".txt"), 'w') as outputfile:
                     for line in inputfile:
                         if counter > 5:
                             break
-                        re.sub("chaka", "foobar", line)
+                        re.sub("chaka", "foo", line)  # adjust strings to substitute accordingly
                         outputfile.write(line)
                         counter += 1
-# todo - add in datetime for new file. logic to delete .DS files
-# todo - tar up source files and move them archived folder
