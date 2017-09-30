@@ -36,3 +36,4 @@ def cleanfiles(folder, numoflines):
             with open(os.path.join(folder, eachfile), 'rb') as f_in:
                 with gzip.open(os.path.join(folder, archivedfolder, eachfile + '.gz'), 'wb') as f_out:
                     shutil.copyfileobj(f_in, f_out)
+            os.remove(os.path.join(folder, eachfile))  # delete the original files after archive complete
