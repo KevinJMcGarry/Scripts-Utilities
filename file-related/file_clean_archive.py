@@ -14,13 +14,11 @@ def cleanfiles(folder, numoflines):
     if not os.path.exists(os.path.join(folder, cleanedfolder)):
         os.mkdir(os.path.join(folder, cleanedfolder))  # makes a folder called 'cleanedfiles' under specified folder path
     for eachfile in os.listdir(folder):
-        print(eachfile)
         if eachfile.endswith("DS_Store"):
             continue  # skip mac created .DS_Store files
         if os.path.isfile(os.path.join(folder, eachfile)):  # only work on files, not folders
             print('processing file ... {} ...'.format(eachfile))
             with open(os.path.join(folder, eachfile), 'r') as inputfile:
-                #with open(os.path.join(folder, cleanedfolder, eachfile + '.new'), 'w') as outputfile:
                 with open(os.path.join(folder, cleanedfolder, eachfile + "_" +
                         (datetime.datetime.now().strftime('%Y-%m-%d_%H.%M.%S')) + ".txt"), 'w') as outputfile:
                     for line in inputfile:
