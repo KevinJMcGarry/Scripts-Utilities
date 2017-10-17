@@ -4,7 +4,7 @@ regex substitution, writing cleaned lines to a new file in a separate folder and
 up the original files and storing them in a separate source folder with a date/timestamp for the name
 '''
 
-import os, re, datetime, gzip, shutil, tarfile
+import os, re, datetime, gzip, shutil
 
 def cleanfiles(folder, numoflines):
     print(os.getcwd())
@@ -12,7 +12,7 @@ def cleanfiles(folder, numoflines):
     cleanedfolder = "cleanedfiles"  # specifying folder location of where to store the modified files
     archivedfolder = "archives"
     if not os.path.exists(os.path.join(folder, cleanedfolder)):
-        os.mkdir(os.path.join(folder, cleanedfolder))  # makes a folder called 'cleanedfiles' under folder path
+        os.mkdir(os.path.join(folder, cleanedfolder))  # makes a folder called 'cleanedfiles' under specified folder path
     for eachfile in os.listdir(folder):
         print(eachfile)
         if eachfile.endswith("DS_Store"):
@@ -24,7 +24,7 @@ def cleanfiles(folder, numoflines):
                 with open(os.path.join(folder, cleanedfolder, eachfile + "_" +
                         (datetime.datetime.now().strftime('%Y-%m-%d_%H.%M.%S')) + ".txt"), 'w') as outputfile:
                     for line in inputfile:
-                        if counter > 5:  # only working with the first 5 lines of each file
+                        if counter > numoflines:  # only working with the first 5 lines of each file
                             break
                         re.sub("chaka", "foo", line)  # adjust strings to substitute accordingly
                         outputfile.write(line)
