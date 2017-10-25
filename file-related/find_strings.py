@@ -1,3 +1,10 @@
+'''
+Script used to recursively go through a folder and search each file for a specific string of interest.
+It then outputs in what file (and the number of times in that file) that the string was found.
+Going to update with exception handling.
+'''
+
+
 def findstring():
 
     wordOfInterest = input('Enter the case-sensitive string you want to search for: ')
