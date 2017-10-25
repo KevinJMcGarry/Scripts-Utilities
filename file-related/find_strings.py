@@ -16,11 +16,14 @@ def findstring():
         for eachFile in file_names:
             fpath = os.path.join(this_dir, eachFile)
             with open(fpath, 'rb') as inputfile:
-                count = 0
+                count = 0  # reset count when opening new file
+                line_hits = []  # reset list when opening new file
                 for line in inputfile:
                     if wordOfInterest in str(line):
                         count += 1
+                        line_hits.append(line)  # append all file's lines that contain the string
             if count > 0:
-                print("found the word \'{}\' {} times in file \'{}\'".format(wordOfInterest, count, fpath))
+                print("\n found the word \'{}\' {} times in file \'{}\'".format(wordOfInterest, count, fpath))
+                print(line_hits)
 
 findstring()
