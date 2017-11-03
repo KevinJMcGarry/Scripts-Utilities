@@ -5,7 +5,8 @@ up the original files and storing them in a separate source folder with a date/t
 
 Usage:
 
-python3 file_clean_archive
+python3 file_clean_archive.py "folderpath" #ofLinesToDelete
+
 '''
 
 import os, re, datetime, gzip, shutil, sys
@@ -21,18 +22,26 @@ else:
     folder = sys.argv[1]
     numoflines = int(sys.argv[2])  # casting to int for counter operation
 
-print("\nprocessing file in folder {} ... \n".format(folder))
 
 
 def cleanfiles(folder, numoflines):
+
+    wordToReplace = input('Enter the word you want to replace: ')
+    newWord = input('Enter the new word you want to use: ')
 
     cleanedfolder = "cleanedfiles"  # specifying folder location of where to store the modified files
     archivedfolder = "archives"
     cleanedFolderPath = os.path.join(folder, cleanedfolder)
     archivedFolderPath = os.path.join(folder, archivedfolder)
 
+    print("\nprocessing file(s) in folder {} ... \n".format(folder))
+
+    print()
+
     if not os.path.exists(cleanedFolderPath):
         os.mkdir(cleanedFolderPath)  # makes a folder called 'cleanedfiles' under specified folder path
+    if not os.path.exists(archivedFolderPath):
+        os.mkdir(archivedFolderPath)
     for eachfile in os.listdir(folder):
         eachFilePath = os.path.join(folder, eachfile)
         counter = 1
@@ -46,16 +55,14 @@ def cleanfiles(folder, numoflines):
                     for line in inputfile:
                         if counter > numoflines:  # only working with the first n lines of each file
                             break
-                        re.sub("chaka", "foo", line)  # adjust strings to substitute accordingly
-                        outputfile.write(line)
+                        cleanedLine = re.sub(wordToReplace, newWord, line)  # adjust strings to substitute accordingly
+                        outputfile.write(cleanedLine)
                         counter += 1
-            if not os.path.exists(archivedFolderPath):
-                os.mkdir(archivedFolderPath)
             zip_file_name = eachfile + '.zip'
             zip_file_path = os.path.join(archivedFolderPath, zip_file_name)
             with open(os.path.join(eachFilePath), 'rb') as f_in:
                 with gzip.open(os.path.join(archivedFolderPath, eachfile + '.gz'), 'wb') as f_out:
-                    shutil.copyfileobj(f_in, f_out)
+                    shutil.copyfileobj(f_in, f_out)  # copy each zipped file to archived folder
             os.remove(os.path.join(eachFilePath))  # delete the original files after archive complete
 
 cleanfiles(folder, numoflines)
