@@ -17,7 +17,7 @@ if len(sys.argv) < 3:
     print("example - python3 file_clean_archive.py \"/Users/kevinmcgarry/foldername\" 7")
     print("be sure to use quotes around the full folder path")
     print("*****************************************************************************\n")
-    exit()
+    quit()
 else:
     folder = sys.argv[1]
     numoflines = int(sys.argv[2])  # casting to int for counter operation
