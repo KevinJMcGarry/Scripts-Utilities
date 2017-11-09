@@ -1,4 +1,7 @@
 # Scripts/Utilities Repo
+    ```bash
+    # from RehearScoreMobile directory
+    yarn install
 
 * File Related - files that xxxx
 
