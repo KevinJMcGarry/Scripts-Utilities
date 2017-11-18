@@ -13,11 +13,7 @@ if [ -z "$1" ]
     echo -e "${RED}No release specified${NC}"
 fi
 
-git checkout master
+git checkout master  # switch to master branch
 git pull origin master
-git pull fetch origin master
-# git merge origin/dev
-git tag ${1}
-
-git push origin master
+git tag ${1}  # create new tag with argument given
 git push origin tag ${1}
