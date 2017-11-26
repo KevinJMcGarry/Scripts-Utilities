@@ -43,7 +43,7 @@ def cleanfiles(folder, numoflines):
     if not os.path.exists(archivedFolderPath):
         os.mkdir(archivedFolderPath)
     for eachfile in os.listdir(folder):
-        eachFilePath = os.path.join(folder, eachfile)
+        eachFilePath = os.path.join(folder, eachfile)  # variable for full path to each file opened below
         counter = 1
         if eachfile.endswith("DS_Store"):
             continue  # skip mac created .DS_Store files
