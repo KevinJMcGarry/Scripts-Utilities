@@ -1,3 +1,7 @@
+'''
+quick script test to download files and store the content
+'''
+
 import requests, os
 
 print(os.getcwd())
