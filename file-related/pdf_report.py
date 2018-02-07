@@ -21,7 +21,7 @@ start_dir = "/Users/kevinmcgarry/temp24/"
 file_path_dest = "/Users/kevinmcgarry/temp22/info.txt"
 
 with open(file_path_dest, 'w') as outputfile:
-    outputfile.write("{0}\t{1}\t{2}\t{3}\n".format("File Name", "Pages", "Creation Date", "Modified Date"))
+    outputfile.write("File Name\t Pages\t Creation Date\t Modified Date")  # column headers
     for current_dir, subdirs, files in os.walk(start_dir):
         # print(files)
         for each_file in files:
