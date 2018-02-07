@@ -20,18 +20,19 @@ import os
 start_dir = "/Users/kevinmcgarry/temp24/"
 file_path_dest = "/Users/kevinmcgarry/temp22/info.txt"
 
-for current_dir, subdirs, files in os.walk(start_dir):
-    # print(files)
-    for each_file in files:
-        full_path = os.path.join(current_dir, each_file)
-        if full_path.endswith("DS_Store"):
-            continue
-        print(full_path)
-        reader = PyPDF2.PdfFileReader(open(full_path, 'rb'))
-        doc_info = reader.getDocumentInfo()
-        num_pages = reader.getNumPages()
-        creation_date = doc_info['/CreationDate'][2:10]
-        modified_date = doc_info['/ModDate'][2:10]
-        full_doc_info = f"{full_path} \t {num_pages} \t {creation_date} \t {modified_date} \n"
-        with open(file_path_dest, 'a') as outputfile:
+with open(file_path_dest, 'w') as outputfile:
+    outputfile.write("{0}\t{1}\t{2}\t{3}\n".format("File Name", "Pages", "Creation Date", "Modified Date"))
+    for current_dir, subdirs, files in os.walk(start_dir):
+        # print(files)
+        for each_file in files:
+            full_path = os.path.join(current_dir, each_file)
+            if full_path.endswith("DS_Store"):
+                continue
+            print(full_path)
+            reader = PyPDF2.PdfFileReader(open(full_path, 'rb'))
+            doc_info = reader.getDocumentInfo()
+            num_pages = reader.getNumPages()
+            creation_date = doc_info['/CreationDate'][2:10]
+            modified_date = doc_info['/ModDate'][2:10]
+            full_doc_info = f"{full_path} \t {num_pages} \t {creation_date} \t {modified_date} \n"
             outputfile.write(full_doc_info)
