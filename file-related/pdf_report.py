@@ -26,7 +26,7 @@ import sys
 if len(sys.argv) > 1:  # first argument specifies directory to start the operation on
     target_dir = sys.argv[1]
 else:
-    startDirectory = '.'  # default directory to use if one isn't specified at runtime
+    target_dir = '.'  # default directory to use if one isn't specified at runtime
 
 if len(sys.argv) > 2:  # second argument is location to store the report
     final_report_dest = sys.argv[2]
@@ -34,7 +34,7 @@ else:
     final_report_dest = './report.txt'  # default directory to use if one isn't specified at runtime
 
 
-def pdf_reporter():
+def pdf_reporter(target_dir, final_report_dest):
     with open(final_report_dest, 'w') as outputfile:
         outputfile.write("File Name\t Pages\t Creation Date\t Modified Date\n")  # column headers
         for current_dir, subdirs, files in os.walk(target_dir):
@@ -46,18 +46,18 @@ def pdf_reporter():
                     continue
                 reader = PyPDF2.PdfFileReader(open(full_path, 'rb'))
                 if reader.isEncrypted is True:  # skip encrypted files
-                    print("{} is encrypted and is being skipped".format(each_file))
+                    print(f"{full_path} is encrypted and is being skipped")
                     continue
                 doc_info = reader.getDocumentInfo()
                 num_pages = reader.getNumPages()
                 # using slicing to pull out exact date from string (eg '/ModDate': "D:20121030173901-04'00'")
                 try:
                     creation_date = doc_info['/CreationDate'][2:10]
-                except:
+                except KeyError:
                     creation_date = "n/a"
                 try:
                     modified_date = doc_info['/ModDate'][2:10]
-                except:
+                except KeyError:
                     modified_date = "n/a"
                 # substitute full_path in the f string first curly-brace position for entire path
                 full_doc_info = f"{relative_path} \t {num_pages} \t {creation_date} \t {modified_date} \n"
@@ -65,4 +65,4 @@ def pdf_reporter():
 
 
 if __name__ == '__main__':
-    pdf_reporter()
+    pdf_reporter(target_dir, final_report_dest)
