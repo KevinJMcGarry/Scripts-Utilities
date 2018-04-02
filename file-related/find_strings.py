@@ -1,6 +1,6 @@
 '''
 Script used to recursively go through a folder and search text files for a specific string of interest.
-It then outputs the name (including full path) of the file and the number of times the word was found.
+It then outputs the name of the file (including full path) and the number of times the word was found in the file.
 '''
 
 
