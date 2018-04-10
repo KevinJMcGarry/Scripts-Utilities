@@ -1,6 +1,7 @@
 '''
 Script used to recursively go through a folder and search text files for a specific string of interest.
-It then outputs the name of the file (including full path) and the number of times the word was found in the file.
+A dictionary is created that contains the filename as the key and the # of times the string appears in the file as the value.
+Finally the dictionary is sorted to show which files contain the highest count of the string of interest.
 '''
 
 
