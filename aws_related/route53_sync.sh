@@ -22,6 +22,7 @@ CLIPATH="/usr/local/bin"
 function backup_all_zones () {
   local zones
   # Enumerate all zones
+  # will update to use native cli filters/jmespath 
   zones=$($CLIPATH/aws route53 list-hosted-zones --profile $AWS_CLI_PROFILE | jq -r '.HostedZones[].Id' | sed "s/\/hostedzone\///")
   for zone in $zones; do
   echo "Backing up zone $zone"
