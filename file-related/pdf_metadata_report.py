@@ -17,6 +17,9 @@ pip3 install pypdf2 (don't use original pypdf with python 3.x+)
 
 """
 
+
+#! /usr/local/bin/python3
+
 import PyPDF2  # https://github.com/mstamy2/PyPDF2
 # more PyPDF2 documentation - http://pythonhosted.org/PyPDF2/PdfFileReader.html
 import os
