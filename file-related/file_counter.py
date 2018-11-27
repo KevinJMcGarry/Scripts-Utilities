@@ -1,5 +1,7 @@
 import os
 import time
+import time
+from PyPDF2 import PdfFileReader # be sure to 'pip3 install PyPDF2'
 
 root_dir = '/Users/kevinmcgarry/Clients/ABB'
 final_report_dest = '/Users/kevinmcgarry/Clients/report.txt'
@@ -61,8 +63,27 @@ def sum_files_by_ext(root_dir):
         print(f"There are {ext_count} files with extension {extension} for a total of {ext_sum} bytes")
 
 
+def count_pdf_pages(root_dir):
+    num = 0
+    for current_dir, subdirs, files in os.walk(root_dir):
+        for each_file in files:
+            try:
+                full_file_path = os.path.join(current_dir, each_file)
+                # print(f"Pre-PDF File ---- {full_file_path}")
+                if full_file_path.lower().endswith("pdf"):
+                    print(full_file_path)
+                    pdf = PdfFileReader(open(full_file_path, 'rb'))
+                    num += pdf.getNumPages()
+                    time.sleep(1)
+            except:
+                print(full_file_path)
+    print(f"There are a total of {num} pdf pages")
+
+
 if __name__ == "__main__":
-    sum_files_by_ext(root_dir)
+    sum_files_by_ext('/Users/kevinmcgarry/Clients/ABB')
+    count_pdf_pages('/Users/kevinmcgarry/Clients/ABB')
+
 
 
 # import pandas as pd
