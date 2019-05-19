@@ -4,13 +4,12 @@ A dictionary is created that contains the filename as the key and the # of times
 Finally the dictionary is sorted to show which files contain the highest count of the string of interest.
 '''
 
+import os
 
 def findstring():
 
     wordOfInterest = input('Enter the case-sensitive string you want to search for: ')
-    startDirectory = input('Enter the full path to the root folder that you want to start your search in: ')
-
-    import os
+    startDirectory = input('Enter the full path to the root folder that you want to start your search in: (Don\'t include quotes) ')
 
     file_hits_dict = {}
     file_hits_list = []
@@ -41,4 +40,5 @@ def findstring():
         print(f"no files were found containing the word \"{wordOfInterest}\"")
 
 
-findstring()
+if __name__ == '__main__':
+    findstring()
