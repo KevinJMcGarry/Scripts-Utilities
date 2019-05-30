@@ -1,10 +1,14 @@
 import os
 import time
-import time
+import shutil
+import openpyxl
+import image  # pip3 install image. needed for xlsx processing
 from PyPDF2 import PdfFileReader # be sure to 'pip3 install PyPDF2'
 
-root_dir = '/Users/kevinmcgarry/Clients/ABB'
+
+root_dir = '/Users/kevinmcgarry/Clients/ABB/National Grid'
 final_report_dest = '/Users/kevinmcgarry/Clients/report.txt'
+word_directory = '/Users/kevinmcgarry/Clients/ABB/msg_docs'
 file_extension_list = []
 file_extension_count = {}
 
@@ -71,18 +75,49 @@ def count_pdf_pages(root_dir):
                 full_file_path = os.path.join(current_dir, each_file)
                 # print(f"Pre-PDF File ---- {full_file_path}")
                 if full_file_path.lower().endswith("pdf"):
-                    print(full_file_path)
+                    # print(full_file_path)
                     pdf = PdfFileReader(open(full_file_path, 'rb'))
                     num += pdf.getNumPages()
-                    time.sleep(1)
+                    # time.sleep(1)
             except:
                 print(full_file_path)
     print(f"There are a total of {num} pdf pages")
 
 
+def copy_word_docs(root_dir):
+    with open(final_report_dest, 'w') as report:
+        for current_dir, subdirs, files in os.walk(root_dir):
+            for each_file in files:
+                full_path = os.path.join(current_dir, each_file)
+                local_path = os.path.dirname(full_path)
+                # print(local_path)
+                file_name, file_extension = os.path.splitext(full_path)
+                if full_path.endswith('.msg'):
+                    shutil.copy(full_path, word_directory)
+
+
+def excel_sheet_count(root_dir):
+    sheet_count = 0
+    for current_dir, subdirs, files in os.walk(root_dir):
+        for each_file in files:
+            full_path = os.path.join(current_dir, each_file)
+            file_name, file_extension = os.path.splitext(full_path)
+            if full_path.endswith('.xlsx'):
+                print(f"Opening Excel Document {full_path}")
+                try:
+                    wb = openpyxl.load_workbook(full_path)
+                    res = len(wb.sheetnames)
+                    sheet_count += res
+                except ModuleNotFoundError:
+                    print("No Module Named PIL")
+    print(sheet_count)
+
+
 if __name__ == "__main__":
-    sum_files_by_ext('/Users/kevinmcgarry/Clients/ABB')
-    count_pdf_pages('/Users/kevinmcgarry/Clients/ABB')
+    # copy_word_docs(root_dir)
+    # sum_files_by_ext('/Users/kevinmcgarry/Clients/ABB')
+    # count_pdf_pages('/Users/kevinmcgarry/Clients/ABB/PowerPoint_Output')
+    excel_sheet_count(root_dir='/Users/kevinmcgarry/Clients/ABB/Excel_Docs')
 
 
 
