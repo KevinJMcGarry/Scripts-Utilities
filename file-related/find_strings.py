@@ -34,7 +34,7 @@ def findstring():
             file_hits_list.append((v, k))
         file_hits_sorted = sorted(file_hits_list, reverse=True)
         print(f"\nFiles containing the word \"{wordOfInterest}\" sorted by number of times the word occurs --")
-        for hit in file_hits_sorted:
+        for hit in file_hits_sorted[0:10]:  # show top 10 hits
             print(hit)
     else:
         print(f"no files were found containing the word \"{wordOfInterest}\"")
